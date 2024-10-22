@@ -29,22 +29,17 @@ Medik8s New Releases
 
 The Medik8s team is thrilled to announce the new releases of ours operators
 
-* Node Maintenance Operator (NMO)    {NMO["tag"]}
-* Node Healthcheck Operator (NHC)    {NHC["tag"]}
-* Self Node Remediation (SNR)        {SNR["tag"]}
-* Fence Agents Remediation (FAR)     {FAR["tag"]}
-* Machine Deletion Remediation (MDR) {MDR["tag"]}
+* Node Maintenance Operator (NMO)    {NMO['tag']} ([release note]({NMO['link']}))
+* Node Healthcheck Operator (NHC)    {NHC['tag']} ([release note]({NHC['link']}))
+* Self Node Remediation (SNR)        {SNR['tag']} ([release note]({SNR['link']}))
+* Fence Agents Remediation (FAR)     {FAR['tag']} ([release note]({FAR['link']}))
+* Machine Deletion Remediation (MDR) {MDR['tag']} ([release note]({MDR['link']}))
 
-see our release notes for the complete list of changes
-* NHC [{NMO['tag']} release note]({NMO['link']})
-* SNR [{NHC['tag']} release note]({NHC['link']})
-* NMO [{SNR['tag']} release note]({SNR['link']})
-* FAR [{FAR['tag']} release note]({FAR['link']})
-* MDR [{MDR['tag']} release note]({MDR['link']})
+see our release notes for the complete list of changes.
 
 Feel free to explore the new operators and contact us if you need any assistance.
 
-Do not forget to visit https://www.medik8s.io/ for the latest information on the team's operators,
+Do not forget to visit [https://www.medik8s.io/](https://www.medik8s.io/) for the latest information on the team's operators,
 Best regards from the Medik8s team.
 
 """
