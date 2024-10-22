@@ -4,27 +4,15 @@
 import requests
 import markdown
 
-products_map = {
-    "NMO": "node-maintenance-operator",
-    "NHC": "node-healthcheck-operator",
-    "SNR": "self-node-remediation",
-    "FAR": "fence-agents-remediation",
-    "MDR": "machine-deletion-remediation",
-}
-# print(requests.get(f'https://api.github.com/repos/medik8s/{products_map["MDR"]}/releases/latest').json())
 
-def get_latest_version(op_shortname:str) -> dict[str,str]:
-    response = requests.get(f'https://api.github.com/repos/medik8s/{products_map[op_shortname]}/releases/latest')
-    return {"tag":response.json()["tag_name"], "link": response.json()["html_url"]}
+def main():
+    NMO = get_latest_version("node-maintenance-operator")
+    NHC = get_latest_version("node-healthcheck-operator")
+    SNR = get_latest_version("self-node-remediation")
+    FAR = get_latest_version("fence-agents-remediation")
+    MDR = get_latest_version("machine-deletion-remediation")
 
-
-NMO = get_latest_version("NMO")
-NHC = get_latest_version("NHC")
-SNR = get_latest_version("SNR")
-FAR = get_latest_version("FAR")
-MDR = get_latest_version("MDR")
-
-TEMPLATE = f"""
+    TEMPLATE = f"""
 Medik8s New Releases
 
 The Medik8s team is thrilled to announce the new releases of ours operators
@@ -41,11 +29,28 @@ Feel free to explore the new operators and contact us if you need any assistance
 
 Do not forget to visit [https://www.medik8s.io/](https://www.medik8s.io/) for the latest information on the team's operators,
 Best regards from the Medik8s team.
-
 """
 
-print("Raw version:")
-print(TEMPLATE)
+    print("Raw version:")
+    print(TEMPLATE)
 
-print("\nFormatted HTML version")
-print(markdown.markdown(TEMPLATE))
+    print("\nFormatted HTML version")
+    print(markdown.markdown(TEMPLATE))
+
+
+def get_latest_version(op_name:str) -> dict[str,str]:
+    """
+    Get the latest version of an Medik8s operator.
+
+    :param op_name: The name of the operator to retrieve the latest version for.
+    :return: A dictionary with the latest version tag and link to the release note.
+    """
+    response = requests.get(f'https://api.github.com/repos/medik8s/{op_name}/releases/latest')
+    return {"tag":response.json()["tag_name"], "link": response.json()["html_url"]}
+
+
+if __name__ == "__main__":
+    main()
+
+
+
