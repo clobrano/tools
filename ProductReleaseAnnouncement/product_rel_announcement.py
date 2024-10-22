@@ -1,11 +1,26 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # vi: set ft=python :
+"""
+Auto-generate social media posts for Medik8s release announcements by filling in the latest tags and
+release information.
+
+Usage:
+    product_rel_announcement.py --markdown
+    product_rel_announcement.py --html
+    product_rel_announcement.py --html --markdown
+
+Options:
+    -m, --markdown  Write the release announcement file release.md, in Markdown format
+    -w, --html      Write the release announcement file release.html, in HTML format
+"""
 import requests
 import markdown
+from docopt import docopt
 
 
 def main():
+    arguments = docopt(__doc__)
     NMO = get_latest_version("node-maintenance-operator")
     NHC = get_latest_version("node-healthcheck-operator")
     SNR = get_latest_version("self-node-remediation")
@@ -31,11 +46,14 @@ Do not forget to visit [https://www.medik8s.io/](https://www.medik8s.io/) for th
 Best regards from the Medik8s team.
 """
 
-    print("Raw version:")
-    print(TEMPLATE)
+    if arguments['--markdown']:
+        with open('release.md', 'w') as f:
+            f.write(TEMPLATE)
 
-    print("\nFormatted HTML version")
-    print(markdown.markdown(TEMPLATE))
+    if arguments['--html']:
+        with open('release.html', 'w') as f:
+            html = markdown.markdown(TEMPLATE)
+            f.write(html)
 
 
 def get_latest_version(op_name:str) -> dict[str,str]:
